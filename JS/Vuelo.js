@@ -40,6 +40,7 @@ function CargarVuelos(){
 }
 
 function AgregarVuelo(){
+    alert('Aviso');
     var datosVuelo = {
         codigo_Vuelo: $('#codigo_Vuelo').val(),
         ciudad_Origen: $('#ciudad_Origen').val(),
@@ -76,7 +77,7 @@ function CargarVuelo(codigoVuelo){
 
     $.ajax({
         url : UrlGetVuelo,
-        type : 'GET',
+        type : 'POST',
         data : datosVueloJson,
         dataype : 'JSON',
         contenttype : 'application/json',
@@ -116,7 +117,7 @@ function ActualizarVuelo(codigoVuelo){
         contenttype : 'application/json',
         success : function(reponse){
             console.log(reponse);
-            alert("Vuelo Actualizado")
+            alert("Vuelo Actualizado");
         },
         error : function(textStatus, errorThrown){
             alert('Error al actualizar el vuelo' + textStatus + errorThrown);
@@ -136,10 +137,14 @@ function EliminarVuelo(codigoVuelo){
         data : datosVueloJson,
         dataype : 'JSON',
         contentType : 'application/json',
-        success : function(response){
-            console.log(response);
+        success : function(reponse){
+            console.log(reponse);
+            alert("Vuelo eliminado correctamente");
+        },
+        error: function(textStatus,  errorThrown){
+            alert('Error al eliminar vuelo'+ textStatus + errorThrown);
         }
     });
-    alert("Vuelo Eliminado");
-    CargarVuelos;
+    alert('Aviso');
+    CargarVuelos();
 }
